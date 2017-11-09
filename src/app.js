@@ -1,52 +1,63 @@
 console.log('App.js in esecuzione');
 
-const template = (
-    <div>
-        <h1>
-            Indecision App
-        </h1>
-        <p>
-            Qualche info
-        </p>
-    </div>
-);
-
-let contatore = 0;
-
-const add1 = () => {
-    contatore++;
-    renderAppCount();
+const app = {
+    titolo: 'Indecision App',
+    sottotitolo: 'Metti la tua vita nelle mani di un computer',
+    opzioni: []
 }
 
-const sub1 = () => {
-    contatore--;
-    renderAppCount();
-}
-const reset = () => {
-    contatore = 0;
-    renderAppCount();
+const onFormSubmit = (event) => {
+    event.preventDefault();
+
+    const opzione = event.target.elements.opzione.value;
+    if(opzione) {
+        app.opzioni.push(opzione);
+
+        // refresho input
+        event.target.elements.opzione.value = '';
+        renderTemplate();
+    }
+};
+
+const onRemoveAll = () => {
+    app.opzioni = [];
+
+    renderTemplate();
 }
 
 const appRoot = document.getElementById('app');
 
-const renderAppCount = () => {
-    const templateTwo = (
+const renderTemplate = () => {
+    const template = (
         <div>
             <h1>
-                Contatore: {contatore}
+                {app.titolo}
             </h1>
-            <button 
-                onClick={add1}>+1</button>
-            <button 
-                onClick={sub1}>-1</button>
-                <button 
-                onClick={reset}>reset</button>
-    </div>
+            {app.sottotitolo && <p>{app.sottotitolo}</p>}
+            <p>
+                {app.opzioni.length > 0 ? 'Ecco le opzioni possibili' : 'Nessuna opzione'}
+            </p>
+            <p>
+                {app.opzioni.length}
+            </p>
+            <button
+                onClick={onRemoveAll}>
+                Rimuovi tutti
+            </button>
+            <ol>
+                <li>item uno</li>
+                <li>item due</li>
+            </ol>
+
+            <form onSubmit={onFormSubmit}>
+                <input type="text" name="opzione" />
+                <button>Aggiungi Opzione</button>
+            </form>
+        </div>
     );
 
-    // renderizzo
-    ReactDOM.render(templateTwo, appRoot);
-}
+    ReactDOM.render(template, appRoot);
 
-renderAppCount();
+};
 
+renderTemplate();
