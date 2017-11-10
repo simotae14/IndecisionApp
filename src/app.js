@@ -12,7 +12,6 @@ const onFormSubmit = (event) => {
     const opzione = event.target.elements.opzione.value;
     if(opzione) {
         app.opzioni.push(opzione);
-        console.log(app.opzioni)
         // refresho input
         event.target.elements.opzione.value = '';
         renderTemplate();
@@ -23,6 +22,12 @@ const onRemoveAll = () => {
     app.opzioni = [];
 
     renderTemplate();
+}
+
+const onMakeDecisions = () => {
+    const randomNum = Math.floor(Math.random() * app.opzioni.length);
+    const opzioneSelected = app.opzioni[randomNum];
+    alert(opzioneSelected);
 }
 
 const appRoot = document.getElementById('app');
@@ -39,9 +44,11 @@ const renderTemplate = () => {
             <p>
                 {app.opzioni.length > 0 ? 'Ecco le opzioni possibili' : 'Nessuna opzione'}
             </p>
-            <p>
-                {app.opzioni.length}
-            </p>
+            <button 
+                disabled={app.opzioni.length === 0}
+                onClick={onMakeDecisions}>
+                Cosa devo fare?
+            </button>
             <button
                 onClick={onRemoveAll}>
                 Rimuovi tutti

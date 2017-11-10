@@ -14,7 +14,6 @@ var onFormSubmit = function onFormSubmit(event) {
     var opzione = event.target.elements.opzione.value;
     if (opzione) {
         app.opzioni.push(opzione);
-        console.log(app.opzioni);
         // refresho input
         event.target.elements.opzione.value = '';
         renderTemplate();
@@ -25,6 +24,12 @@ var onRemoveAll = function onRemoveAll() {
     app.opzioni = [];
 
     renderTemplate();
+};
+
+var onMakeDecisions = function onMakeDecisions() {
+    var randomNum = Math.floor(Math.random() * app.opzioni.length);
+    var opzioneSelected = app.opzioni[randomNum];
+    alert(opzioneSelected);
 };
 
 var appRoot = document.getElementById('app');
@@ -51,9 +56,11 @@ var renderTemplate = function renderTemplate() {
             app.opzioni.length > 0 ? 'Ecco le opzioni possibili' : 'Nessuna opzione'
         ),
         React.createElement(
-            'p',
-            null,
-            app.opzioni.length
+            'button',
+            {
+                disabled: app.opzioni.length === 0,
+                onClick: onMakeDecisions },
+            'Cosa devo fare?'
         ),
         React.createElement(
             'button',
