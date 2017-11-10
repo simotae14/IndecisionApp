@@ -12,7 +12,7 @@ const onFormSubmit = (event) => {
     const opzione = event.target.elements.opzione.value;
     if(opzione) {
         app.opzioni.push(opzione);
-
+        console.log(app.opzioni)
         // refresho input
         event.target.elements.opzione.value = '';
         renderTemplate();
@@ -26,6 +26,8 @@ const onRemoveAll = () => {
 }
 
 const appRoot = document.getElementById('app');
+
+const numeri = [55, 101, 1000];
 
 const renderTemplate = () => {
     const template = (
@@ -45,8 +47,10 @@ const renderTemplate = () => {
                 Rimuovi tutti
             </button>
             <ol>
-                <li>item uno</li>
-                <li>item due</li>
+                {
+                    app.opzioni.map((opt) => <li key={opt}>{opt}</li>)
+                    
+                }
             </ol>
 
             <form onSubmit={onFormSubmit}>

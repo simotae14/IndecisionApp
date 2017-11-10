@@ -14,7 +14,7 @@ var onFormSubmit = function onFormSubmit(event) {
     var opzione = event.target.elements.opzione.value;
     if (opzione) {
         app.opzioni.push(opzione);
-
+        console.log(app.opzioni);
         // refresho input
         event.target.elements.opzione.value = '';
         renderTemplate();
@@ -28,6 +28,8 @@ var onRemoveAll = function onRemoveAll() {
 };
 
 var appRoot = document.getElementById('app');
+
+var numeri = [55, 101, 1000];
 
 var renderTemplate = function renderTemplate() {
     var template = React.createElement(
@@ -62,16 +64,13 @@ var renderTemplate = function renderTemplate() {
         React.createElement(
             'ol',
             null,
-            React.createElement(
-                'li',
-                null,
-                'item uno'
-            ),
-            React.createElement(
-                'li',
-                null,
-                'item due'
-            )
+            app.opzioni.map(function (opt) {
+                return React.createElement(
+                    'li',
+                    { key: opt },
+                    opt
+                );
+            })
         ),
         React.createElement(
             'form',
