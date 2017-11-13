@@ -46,6 +46,6 @@ const me = new Traveler('Andrew Mead', 26, 'Philadelphia');
 
 console.log(me.getGreeting());
 
-const altro = new Traveler();
+const altro = new Traveler(undefined, undefined, 'Nowhere');
 
 console.log(altro.getGreeting());
