@@ -1,11 +1,14 @@
 // creo un Component Parent
 class IndecisionApp extends React.Component {
     render() {
+      const title = 'Indecisione';
+      const subtitle = 'Metti la tua vita nelle mani di un computer';
+      const options = ['Cosa uno', 'Cosa due', 'Cosa quattro'];
       return (
         <div>
-          <Header />
+          <Header title={title} subtitle={subtitle} />
           <Action />
-          <Options />
+          <Options options={options} />
           <AddOption />
         </div>
       );
@@ -16,8 +19,8 @@ class Header extends React.Component {
   render() {
     return (
       <div>
-        <h1>Indeciso</h1>
-        <h2>Metti la tua vita nelle mani di un computer</h2>
+        <h1>{this.props.title}</h1>
+        <h2>{this.props.subtitle}</h2>
       </div>
     );
   }
@@ -37,9 +40,10 @@ class Action extends React.Component {
 // creo il component Options
 class Options extends React.Component {
   render() {
+    console.log(this.props.options);
     return (
       <div>
-        Options component here
+        {this.props.options.map((option) => <Option key={option} textOption={option} />)}
         <Option />
       </div>
     );
@@ -51,7 +55,7 @@ class Option extends React.Component {
   render() {
     return (
       <div>
-        Option Component here
+        {this.props.textOption}
       </div>
     );
   }
