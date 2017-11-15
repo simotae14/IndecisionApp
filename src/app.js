@@ -73,7 +73,7 @@ class Options extends React.Component {
   render() {
     return (
       <div>
-        <button onClick={this.handleRemoveAll.bind(this)}>Rimuovi tutto</button>
+        <button onClick={this.handleRemoveAll}>Rimuovi tutto</button>
         {this.props.options.map((option) => <Option key={option} textOption={option} />)}
       </div>
     );
