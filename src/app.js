@@ -1,3 +1,20 @@
+// const obj = {
+//   nome: 'Vikram',
+//   getNome() {
+//     return this.nome;
+//   }
+// }
+//
+// const func = function() {
+//   console.log(this);
+// }
+//
+// func();
+//
+// const getNome = obj.getNome.bind({nome: 'Simone'});
+//
+// console.log(getNome());
+
 // creo un Component Parent
 class IndecisionApp extends React.Component {
     render() {
@@ -43,14 +60,20 @@ class Action extends React.Component {
 
 // creo il component Options
 class Options extends React.Component {
+  constructor(props) {
+    super(props);
+    // faccio il bind dell'handler
+    this.handleRemoveAll = this.handleRemoveAll.bind(this);
+  }
   // definisco un metodo del Component
   handleRemoveAll() {
-    alert('selected Remove all');
+    console.log(this.props.options);
+    //alert('selected Remove all');
   }
   render() {
     return (
       <div>
-        <button onClick={this.handleRemoveAll}>Rimuovi tutto</button>
+        <button onClick={this.handleRemoveAll.bind(this)}>Rimuovi tutto</button>
         {this.props.options.map((option) => <Option key={option} textOption={option} />)}
       </div>
     );

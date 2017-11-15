@@ -8,6 +8,23 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+// const obj = {
+//   nome: 'Vikram',
+//   getNome() {
+//     return this.nome;
+//   }
+// }
+//
+// const func = function() {
+//   console.log(this);
+// }
+//
+// func();
+//
+// const getNome = obj.getNome.bind({nome: 'Simone'});
+//
+// console.log(getNome());
+
 // creo un Component Parent
 var IndecisionApp = function (_React$Component) {
   _inherits(IndecisionApp, _React$Component);
@@ -113,18 +130,23 @@ var Action = function (_React$Component3) {
 var Options = function (_React$Component4) {
   _inherits(Options, _React$Component4);
 
-  function Options() {
+  function Options(props) {
     _classCallCheck(this, Options);
 
-    return _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).apply(this, arguments));
+    // faccio il bind dell'handler
+    var _this4 = _possibleConstructorReturn(this, (Options.__proto__ || Object.getPrototypeOf(Options)).call(this, props));
+
+    _this4.handleRemoveAll = _this4.handleRemoveAll.bind(_this4);
+    return _this4;
   }
+  // definisco un metodo del Component
+
 
   _createClass(Options, [{
     key: 'handleRemoveAll',
-
-    // definisco un metodo del Component
     value: function handleRemoveAll() {
-      alert('selected Remove all');
+      console.log(this.props.options);
+      //alert('selected Remove all');
     }
   }, {
     key: 'render',
@@ -134,7 +156,7 @@ var Options = function (_React$Component4) {
         null,
         React.createElement(
           'button',
-          { onClick: this.handleRemoveAll },
+          { onClick: this.handleRemoveAll.bind(this) },
           'Rimuovi tutto'
         ),
         this.props.options.map(function (option) {
