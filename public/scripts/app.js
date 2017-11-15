@@ -83,6 +83,13 @@ var Action = function (_React$Component3) {
   }
 
   _createClass(Action, [{
+    key: 'handlePick',
+
+    // definisco un metodo del component
+    value: function handlePick() {
+      alert('handlePick created');
+    }
+  }, {
     key: 'render',
     value: function render() {
       return React.createElement(
@@ -90,7 +97,7 @@ var Action = function (_React$Component3) {
         null,
         React.createElement(
           'button',
-          null,
+          { onClick: this.handlePick },
           'Cosa devo fare?'
         )
       );
@@ -113,16 +120,26 @@ var Options = function (_React$Component4) {
   }
 
   _createClass(Options, [{
+    key: 'handleRemoveAll',
+
+    // definisco un metodo del Component
+    value: function handleRemoveAll() {
+      alert('selected Remove all');
+    }
+  }, {
     key: 'render',
     value: function render() {
-      console.log(this.props.options);
       return React.createElement(
         'div',
         null,
+        React.createElement(
+          'button',
+          { onClick: this.handleRemoveAll },
+          'Rimuovi tutto'
+        ),
         this.props.options.map(function (option) {
           return React.createElement(Option, { key: option, textOption: option });
-        }),
-        React.createElement(Option, null)
+        })
       );
     }
   }]);
@@ -169,12 +186,32 @@ var AddOption = function (_React$Component6) {
   }
 
   _createClass(AddOption, [{
+    key: 'handleAddOption',
+    value: function handleAddOption(e) {
+      e.preventDefault();
+      var opzioneInserita = e.target.elements.option.value.trim();
+      if (opzioneInserita) {
+        alert(opzioneInserita);
+      }
+      // pulisco input
+      e.target.elements.option.value = '';
+    }
+  }, {
     key: 'render',
     value: function render() {
       return React.createElement(
         'div',
         null,
-        'AddOption component here'
+        React.createElement(
+          'form',
+          { onSubmit: this.handleAddOption },
+          React.createElement('input', { type: 'text', name: 'option' }),
+          React.createElement(
+            'button',
+            null,
+            'Aggiungi Opzione'
+          )
+        )
       );
     }
   }]);
