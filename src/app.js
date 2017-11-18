@@ -6,13 +6,14 @@ class IndecisionApp extends React.Component {
       this.handlePick = this.handlePick.bind(this);
       this.handleAddOption = this.handleAddOption.bind(this);
       this.state = {
-        options: []
+        options: props.options
       };
     }
     // creo il metodo da passare al Child
     handleDeleteOptions() {
       this.setState(() => {
         return {
+          // perché ho settato il valore di default
           options: []
         };
       });
@@ -37,11 +38,10 @@ class IndecisionApp extends React.Component {
       });
     }
     render() {
-      const title = 'Indecisione App';
       const subtitle = 'Metti la tua vita nelle mani di un computer';
       return (
         <div>
-          <Header title={title} subtitle={subtitle} />
+          <Header subtitle={subtitle} />
           <Action
             handlePick={this.handlePick}
             hasOptions={this.state.options.length > 0}
@@ -58,16 +58,25 @@ class IndecisionApp extends React.Component {
     }
 }
 
+IndecisionApp.defaultProps = {
+  options: []
+}
+
 // creo il Component Header
 // stateless
 const Header = (props) => {
   return (
     <div>
       <h1>{props.title}</h1>
-      <h2>{props.subtitle}</h2>
+      { props.subtitle && <h2>{props.subtitle}</h2> }
     </div>
   );
 }
+// creo valori di defualt dei props
+Header.defaultProps = {
+  title: 'Indecision'
+};
+
 
 // creo il Component Action
 // stateless
@@ -152,4 +161,4 @@ class AddOption extends React.Component {
 // }
 
 // renderizzare il Component
-ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
+ReactDOM.render(<IndecisionApp options={['Devils den', 'Second district']} />, document.getElementById('app'));
