@@ -235,4 +235,4 @@ var AddOption = function (_React$Component2) {
 // renderizzare il Component
 
 
-ReactDOM.render(React.createElement(IndecisionApp, { options: ['Devils den', 'Second district'] }), document.getElementById('app'));
+ReactDOM.render(React.createElement(IndecisionApp, null), document.getElementById('app'));
