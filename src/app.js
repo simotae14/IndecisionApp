@@ -58,52 +58,49 @@ class IndecisionApp extends React.Component {
     }
 }
 
-class Header extends React.Component {
-  render() {
-    return (
-      <div>
-        <h1>{this.props.title}</h1>
-        <h2>{this.props.subtitle}</h2>
-      </div>
-    );
-  }
+// creo il Component Header
+// stateless
+const Header = (props) => {
+  return (
+    <div>
+      <h1>{props.title}</h1>
+      <h2>{props.subtitle}</h2>
+    </div>
+  );
 }
 
 // creo il Component Action
-class Action extends React.Component {
-  render() {
-    return (
-      <div>
-        <button
-          disabled={!this.props.hasOptions}
-          onClick={this.props.handlePick}
-        >Cosa devo fare?</button>
-      </div>
-    );
-  }
-}
+// stateless
+const Action = (props) => {
+  return (
+    <div>
+      <button
+        disabled={!props.hasOptions}
+        onClick={props.handlePick}
+      >Cosa devo fare?</button>
+    </div>
+  );
+};
 
 // creo il component Options
-class Options extends React.Component {
-  render() {
-    return (
-      <div>
-        <button onClick={this.props.handleDeleteOptions}>Rimuovi tutto</button>
-        {this.props.options.map((option) => <Option key={option} textOption={option} />)}
-      </div>
-    );
-  }
+// stateless
+const Options = (props) => {
+  return (
+    <div>
+      <button onClick={props.handleDeleteOptions}>Rimuovi tutto</button>
+      {props.options.map((option) => <Option key={option} textOption={option} />)}
+    </div>
+  );
 }
 
 // creo il component Option
-class Option extends React.Component {
-  render() {
-    return (
-      <div>
-        {this.props.textOption}
-      </div>
-    );
-  }
+// staelss
+const Option = (props) => {
+  return (
+    <div>
+      {props.textOption}
+    </div>
+  );
 }
 
 // creo il component AddOption
@@ -125,6 +122,7 @@ class AddOption extends React.Component {
         error
       }
     })
+    e.target.elements.option.value = '';
   }
   render() {
     return (
@@ -138,6 +136,20 @@ class AddOption extends React.Component {
     );
   }
 }
+
+// stateless functional component
+// const User = (props) => {
+//   return (
+//     <div>
+//       <p>
+//         Name: {props.name}
+//       </p>
+//       <p>
+//         Age: {props.age}
+//       </p>
+//     </div>
+//   );
+// }
 
 // renderizzare il Component
 ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
