@@ -10,6 +10,16 @@ class IndecisionApp extends React.Component {
         options: props.options
       };
     }
+    // component method quando viene creato per la prima volta nel Dom il component
+    componentDidMount() {
+        console.log('fetching data');
+    }
+    componentDidUpdate(prevProps, prevState) {
+        console.log('saving data');
+    }
+    componentWillUnmount() {
+        console.log('componentWillUnmount!');
+    }
     // creo il metodo per rimuovere una sola opzione
     handleDeleteOption(optionToRemove) {
       // modifico lo stato di options rimuovendo la option

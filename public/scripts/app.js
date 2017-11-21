@@ -26,10 +26,27 @@ var IndecisionApp = function (_React$Component) {
     };
     return _this;
   }
-  // creo il metodo per rimuovere una sola opzione
+  // component method quando viene creato per la prima volta nel Dom il component
 
 
   _createClass(IndecisionApp, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      console.log('fetching data');
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps, prevState) {
+      console.log('saving data');
+    }
+  }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      console.log('componentWillUnmount!');
+    }
+    // creo il metodo per rimuovere una sola opzione
+
+  }, {
     key: 'handleDeleteOption',
     value: function handleDeleteOption(optionToRemove) {
       // modifico lo stato di options rimuovendo la option
