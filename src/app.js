@@ -7,7 +7,7 @@ class IndecisionApp extends React.Component {
       this.handleAddOption = this.handleAddOption.bind(this);
       this.handleDeleteOption = this.handleDeleteOption.bind(this);
       this.state = {
-        options: props.options
+        options: []
       };
     }
     // component method quando viene creato per la prima volta nel Dom il component
@@ -80,10 +80,6 @@ class IndecisionApp extends React.Component {
       );
     }
 }
-
-IndecisionApp.defaultProps = {
-  options: []
-};
 
 // creo il Component Header
 // stateless
