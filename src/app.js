@@ -1,10 +1,7 @@
-// import validator from 'validator';
-
-// console.log(validator.isEmail('test@gmail.com'));
 import React from 'react';
 import ReactDOM from 'react-dom';
+import IndecisionApp from './components/IndecisionApp'
 
-// creo il template
-const template = <p>THIS IS JSX FROM WEBPACK</p>;
+// renderizzare il Component
+ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
 
-ReactDOM.render(template, document.getElementById('app'));
