@@ -8,16 +8,37 @@ import Header from './Header'
 
 // creo un Component Parent
 export default class IndecisionApp extends React.Component {
-    constructor(props) {
-      super(props);
-      this.handleDeleteOptions = this.handleDeleteOptions.bind(this);
-      this.handlePick = this.handlePick.bind(this);
-      this.handleAddOption = this.handleAddOption.bind(this);
-      this.handleDeleteOption = this.handleDeleteOption.bind(this);
-      this.state = {
-        options: []
-      };
-    }
+    state = {
+      options: []
+    };
+    // creo il metodo da passare al Child
+    handleDeleteOptions = () => {
+      this.setState(() =>  ({ options: [] }));
+    };    
+    // creo il metodo per rimuovere una sola opzione
+    handleDeleteOption = (optionToRemove) => {
+      // modifico lo stato di options rimuovendo la option
+      this.setState((prevState) => ( {
+          options: prevState.options.filter((option) => optionToRemove !== option )
+      }));
+    };
+    // creo metodo che seleziona una opzione
+    handlePick = () => {
+      const randomNum = Math.floor(Math.random() * this.state.options.length);
+      const opzioneSelected = this.state.options[randomNum];
+      alert(opzioneSelected);
+    };
+    // Aggiunta opzione
+    handleAddOption = (option) => {
+      if(!option) {
+        return 'Inserire un valore valido per aggiungere un elemento';
+      } else if(this.state.options.indexOf(option) > -1) {
+        return 'Questa opzione già esiste';
+      }
+      this.setState((prevState) => ({
+        options: prevState.options.concat([option])
+      }));
+    };
     // component method quando viene creato per la prima volta nel Dom il component
     componentDidMount() {
       try {
@@ -38,34 +59,6 @@ export default class IndecisionApp extends React.Component {
     }
     componentWillUnmount() {
         console.log('componentWillUnmount!');
-    }
-    // creo il metodo da passare al Child
-    handleDeleteOptions() {
-      this.setState(() =>  ({ options: [] }));
-    }    // creo il metodo per rimuovere una sola opzione
-    handleDeleteOption(optionToRemove) {
-      // modifico lo stato di options rimuovendo la option
-      this.setState((prevState) => ( {
-          options: prevState.options.filter((option) => optionToRemove !== option )
-      }));
-    }
-
-    // creo metodo che seleziona una opzione
-    handlePick() {
-      const randomNum = Math.floor(Math.random() * this.state.options.length);
-      const opzioneSelected = this.state.options[randomNum];
-      alert(opzioneSelected);
-    }
-    // Aggiunta opzione
-    handleAddOption(option) {
-      if(!option) {
-        return 'Inserire un valore valido per aggiungere un elemento';
-      } else if(this.state.options.indexOf(option) > -1) {
-        return 'Questa opzione già esiste';
-      }
-      this.setState((prevState) => ({
-        options: prevState.options.concat([option])
-      }));
     }
     render() {
       const subtitle = 'Metti la tua vita nelle mani di un computer';
