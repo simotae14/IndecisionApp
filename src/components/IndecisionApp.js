@@ -4,12 +4,14 @@ import AddOption from './AddOption'
 import Options from './Options'
 import Action from './Action'
 import Header from './Header'
+import OptionModal from './OptionModal'
 
 
 // creo un Component Parent
 export default class IndecisionApp extends React.Component {
     state = {
-      options: []
+      options: [],
+      selectedOption: undefined
     };
     // creo il metodo da passare al Child
     handleDeleteOptions = () => {
@@ -26,7 +28,9 @@ export default class IndecisionApp extends React.Component {
     handlePick = () => {
       const randomNum = Math.floor(Math.random() * this.state.options.length);
       const opzioneSelected = this.state.options[randomNum];
-      alert(opzioneSelected);
+      this.setState(() => ({
+        selectedOption: opzioneSelected
+      }));
     };
     // Aggiunta opzione
     handleAddOption = (option) => {
@@ -37,6 +41,12 @@ export default class IndecisionApp extends React.Component {
       }
       this.setState((prevState) => ({
         options: prevState.options.concat([option])
+      }));
+    };
+    // Cancello opzione Selezionata
+    handleClearSelectedOption = () => {
+      this.setState(() => ({
+        selectedOption: undefined
       }));
     };
     // component method quando viene creato per la prima volta nel Dom il component
@@ -76,6 +86,10 @@ export default class IndecisionApp extends React.Component {
           />
           <AddOption
             handleAddOption={this.handleAddOption}
+          />
+          <OptionModal 
+            selectedOption={this.state.selectedOption}
+            handleClearSelectedOption={this.handleClearSelectedOption}
           />
         </div>
       );
