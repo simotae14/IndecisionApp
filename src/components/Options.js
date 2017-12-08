@@ -5,7 +5,10 @@ import Option from "./Option";
 // stateless
 const Options = (props) => (
   <div>
-    <button onClick={props.handleDeleteOptions}>Rimuovi tutto</button>
+    <button 
+      className="button button--link"
+      onClick={props.handleDeleteOptions
+    }>Rimuovi tutto</button>
     {props.options.length === 0 && <p>Per favore inserisci una opzione per iniziare!</p>}
     {
       props.options.map((option) => (
