@@ -3,11 +3,13 @@ import React from 'react';
 // creo il component Option
 // statelss
 const Option = (props) => (
-  <div>
-    {props.textOption}
-    <button onClick={(e) => {
+  <div className="option">
+    <p className="option__text">
+      {props.count}. {props.textOption}
+    </p>
+    <button className="button button--link" onClick={(e) => {
       props.handleDeleteOption(props.textOption)
-    }}>remove</button>
+    }}>Rimuovi</button>
   </div>
 );
 
