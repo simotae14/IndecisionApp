@@ -6,7 +6,8 @@
   "scripts": {
     "serve": "live-server public/",
     "build": "webpack",
-    "dev-server": "webpack-dev-server"
+    "dev-server": "webpack-dev-server",
+    "deploy": "webpack && surge -p ./public/ -d indecision-startae14.surge.sh"
   },
   "author": "simone taeggi",
   "license": "ISC",
