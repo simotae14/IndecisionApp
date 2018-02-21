@@ -1,5 +1,5 @@
 {
-  "name": "indecision-app",
+  "name": "boilerplate",
   "version": "1.0.0",
   "description": "first attempt with react",
   "main": "index.js",
@@ -7,7 +7,7 @@
     "serve": "live-server public/",
     "build": "webpack",
     "dev-server": "webpack-dev-server",
-    "deploy": "webpack && surge -p ./public/ -d indecision-startae14.surge.sh"
+    "deploy": "webpack && surge -p ./public/ -d boilerplate-startae14.surge.sh"
   },
   "author": "simone taeggi",
   "license": "ISC",
